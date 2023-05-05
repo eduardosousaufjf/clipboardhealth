@@ -1,5 +1,14 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
+import { Facility } from '../../Facility/model/facility';
+import { Worker } from '../../Worker/model/worker';
 @Entity('Shift')
 export class Shift extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -10,14 +19,14 @@ export class Shift extends BaseEntity {
     nullable: false,
     name: 'start',
   })
-  start: boolean;
+  start: string;
 
   @Column({
     type: 'timestamp',
     nullable: false,
     name: 'end',
   })
-  end: boolean;
+  end: string;
 
   @Column({
     type: 'varchar',
@@ -40,4 +49,12 @@ export class Shift extends BaseEntity {
     nullable: false,
   })
   worker_id: number;
+
+  @OneToMany(() => Facility, (facility) => facility.shifts)
+  @JoinColumn({ name: 'facility_id' })
+  facility: Facility;
+
+  @ManyToOne(() => Worker, (worker) => worker.shifts)
+  @JoinColumn({ name: 'worker_id' })
+  worker: Worker;
 }

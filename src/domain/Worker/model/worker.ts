@@ -1,4 +1,14 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+  OneToMany,
+} from 'typeorm';
+import { Document } from '../../Document/model/document';
+import { Shift } from '../../Shift/model/shift';
 
 @Entity('Worker')
 export class Worker extends BaseEntity {
@@ -22,4 +32,21 @@ export class Worker extends BaseEntity {
     nullable: false,
   })
   profession: string;
+
+  @ManyToMany(() => Document)
+  @JoinTable({
+    name: 'DocumentWorker',
+    joinColumn: {
+      name: 'document_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'worker_id',
+      referencedColumnName: 'id',
+    },
+  })
+  documents: Document[];
+
+  @OneToMany(() => Shift, (shift) => shift.worker)
+  shifts: Shift[];
 }
