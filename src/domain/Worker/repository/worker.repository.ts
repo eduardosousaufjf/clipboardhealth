@@ -22,12 +22,19 @@ export class WorkerRepository extends Repository<Worker> {
   }
   public async findAvailableShiftWithPagination(
     workerIdParam: string,
+    facilityIdParam: string,
+    shiftStart: string,
+    shiftEnd: string,
     pageParam?: string,
     limitParam?: string,
   ): Promise<any> {
     const page = pageParam ? parseInt(pageParam) : 0;
     const limit = limitParam ? parseInt(limitParam) : 10;
     const workerId = parseInt(workerIdParam);
+    const facilityId = parseInt(facilityIdParam);
+
+    const startDate = new Date(shiftStart).toISOString();
+    const endDate = new Date(shiftEnd).toISOString();
 
     const queryBuilder = this.createQueryBuilder('wor');
     queryBuilder
@@ -54,6 +61,11 @@ export class WorkerRepository extends Repository<Worker> {
           ')',
       )
       .andWhere('wor.id = :id', { id: workerId })
+      .andWhere('fac.id = :facId', { facId: facilityId })
+      .andWhere('shi.start >= :shiStart AND shi.end <= :shiEnd', {
+        shiStart: startDate,
+        shiEnd: endDate,
+      })
       .distinctOn(['shi.id', 'shi.start'])
       .orderBy('shi.start', 'ASC')
       .offset(page * limit)

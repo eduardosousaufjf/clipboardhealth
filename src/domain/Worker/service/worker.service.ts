@@ -12,12 +12,18 @@ export class WorkerService {
   ) => await this.workerRepository.findAllWithPagination(pageParam, limitParam);
 
   public findShiftsWithPagination = async (
-    id: string,
+    workerId: string,
+    facilityId: string,
+    shiftStart: string,
+    shiftEnd: string,
     pageParam?: string,
     limitParam?: string,
   ): Promise<any> =>
     await this.workerRepository.findAvailableShiftWithPagination(
-      id,
+      workerId,
+      facilityId,
+      shiftStart,
+      shiftEnd,
       pageParam,
       limitParam,
     );
