@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ShiftRepository } from '../repository/shift.repository';
+import { Shift } from '../model/shift';
 
 @Injectable()
 export class ShiftService {
@@ -10,5 +11,6 @@ export class ShiftService {
   public findAllWithPagination = async (
     pageParam?: string,
     limitParam?: string,
-  ) => await this.shiftRepository.findAllWithPagination(pageParam, limitParam);
+  ): Promise<{ shifts: Shift[] }> =>
+    await this.shiftRepository.findAllWithPagination(pageParam, limitParam);
 }

@@ -7,7 +7,7 @@ export class ShiftRepository extends Repository<Shift> {
   public async findAllWithPagination(
     pageParam?: string,
     limitParam?: string,
-  ): Promise<any> {
+  ): Promise<{ shifts: Shift[] }> {
     const page = pageParam ? parseInt(pageParam) : 0;
     const limit = limitParam ? parseInt(limitParam) : 10;
 
