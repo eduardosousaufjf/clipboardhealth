@@ -14,6 +14,10 @@ export class Shift extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
+  /**
+   * When the shift starts, ISO 8601 string
+   * @example '2023-02-13T21:00:00.411Z'
+   */
   @Column({
     type: 'timestamp',
     nullable: false,
@@ -21,6 +25,10 @@ export class Shift extends BaseEntity {
   })
   start: string;
 
+  /**
+   * When the shift ends, ISO 8601 string
+   * @example '2023-02-13T21:00:00.411Z'
+   */
   @Column({
     type: 'timestamp',
     nullable: false,
