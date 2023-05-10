@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsISO8601, IsNumber, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 export class GetWorkersShiftQueryParams {
   @IsNumber()
@@ -15,11 +15,9 @@ export class GetWorkersShiftQueryParams {
   @Type(() => Number)
   facilityId: string;
 
-  @IsString()
-  @Type(() => String)
+  @IsISO8601()
   shiftStart: string;
 
-  @IsString()
-  @Type(() => String)
+  @IsISO8601()
   shiftEnd: string;
 }
