@@ -38,7 +38,7 @@ describe('shift controller', () => {
       jest
         .spyOn(shiftService, 'findAllWithPagination')
         .mockImplementation(() => promise);
-      expect(await shiftController.getShifts({})).toBe(result);
+      expect(await shiftController.getShifts({})).toEqual({ shifts: result });
     });
 
     it('should return an array with one shift when there is a shift', async () => {
@@ -48,7 +48,7 @@ describe('shift controller', () => {
       jest
         .spyOn(shiftService, 'findAllWithPagination')
         .mockImplementation(() => promise);
-      expect(await shiftController.getShifts({})).toBe(shifts);
+      expect(await shiftController.getShifts({})).toEqual({ shifts });
     });
   });
 });

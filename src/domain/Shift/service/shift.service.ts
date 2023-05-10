@@ -9,8 +9,8 @@ export class ShiftService {
   ) {}
 
   public findAllWithPagination = async (
-    pageParam?: string,
-    limitParam?: string,
+    pageParam?: number,
+    limitParam?: number,
   ): Promise<{ shifts: Shift[] }> =>
     await this.shiftRepository.findAllWithPagination(pageParam, limitParam);
 }

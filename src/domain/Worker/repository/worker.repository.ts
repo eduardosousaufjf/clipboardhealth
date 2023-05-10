@@ -5,11 +5,11 @@ import { WorkerShiftsDto } from '../dto/worker-shifts-dto';
 @CustomRepository(Worker)
 export class WorkerRepository extends Repository<Worker> {
   public async findAllWithPagination(
-    pageParam?: string,
-    limitParam?: string,
+    pageParam?: number,
+    limitParam?: number,
   ): Promise<any> {
-    const page = pageParam ? parseInt(pageParam) : 0;
-    const limit = limitParam ? parseInt(limitParam) : 10;
+    const page = pageParam ?? 0;
+    const limit = limitParam ?? 10;
 
     const queryBuilder = this.createQueryBuilder('worker');
     queryBuilder
@@ -25,11 +25,11 @@ export class WorkerRepository extends Repository<Worker> {
     facilityIdParam: string,
     shiftStart: string,
     shiftEnd: string,
-    pageParam?: string,
-    limitParam?: string,
-  ): Promise<any> {
-    const page = pageParam ? parseInt(pageParam) : 0;
-    const limit = limitParam ? parseInt(limitParam) : 10;
+    pageParam?: number,
+    limitParam?: number,
+  ): Promise<WorkerShiftsDto> {
+    const page = pageParam ?? 0;
+    const limit = limitParam ?? 10;
     const workerId = parseInt(workerIdParam);
     const facilityId = parseInt(facilityIdParam);
 

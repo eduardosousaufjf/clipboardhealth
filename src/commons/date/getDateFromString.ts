@@ -5,7 +5,7 @@
  */
 const getDateFromString = (dateString: string) => {
   const date = new Date(dateString);
-  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 };
 
 export default getDateFromString;
