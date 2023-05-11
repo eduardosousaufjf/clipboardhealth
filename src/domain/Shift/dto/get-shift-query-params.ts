@@ -3,6 +3,7 @@ import { Type } from 'class-transformer';
 
 export class GetShiftQueryParams {
   @IsNumber()
+  @Type(() => Number)
   @IsOptional()
   page?: number;
 

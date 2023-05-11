@@ -61,6 +61,7 @@ export class WorkerRepository extends Repository<Worker> {
           ')',
       )
       .andWhere('wor.id = :id', { id: workerId })
+      .andWhere('wor.is_active IS TRUE')
       .andWhere('fac.id = :facId', { facId: facilityId })
       .andWhere('shi.start >= :shiStart AND shi.end <= :shiEnd', {
         shiStart: startDate,
