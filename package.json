@@ -23,7 +23,7 @@
     "migrations:generate": "npm run typeorm migration:generate -- -o true -d src/database.options.ts src/migrations/$MIGRATION_NAME"
   },
   "dependencies": {
-    "@nestjs/common": "^9.0.0",
+    "@nestjs/common": "^9.4.3",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^6.3.0",
